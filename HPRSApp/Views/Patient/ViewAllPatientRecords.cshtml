@@ -1,0 +1,89 @@
+﻿@model IEnumerable<HPRSApp.Models.PatientViewModel>
+
+@{
+    ViewData["Title"] = "ViewAllPatientRecords";
+}
+
+<h1>All Patient Records</h1>
+
+@* <p>
+    <a asp-action="Create">Create New</a>
+</p> *@
+
+<div>
+    <form asp-action="ViewAllPatientRecords" method="post" class="form-check-inline mb-3">
+        <div class="form-group">
+            <input type="text" name="diagnosis" class="form-control" placeholder="Enter Diagnosis Name" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary ml-2">Search</button>
+    </form>
+    <div>
+        @if (ViewBag.msg!=null)
+        {
+            <p class="text-danger">@ViewBag.msg</p>
+        }
+    </div>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diagnosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddmissionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDischarged)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @* <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diagnosis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddmissionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isDischarged)
+                </td>
+                <td>
+                    @Html.ActionLink("Update Record", "UpdatePatientRecord", new { id = item.PatientId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PatientId }) |
+                    @Html.ActionLink("Delete", "DeletePatient", new { id = item.PatientId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

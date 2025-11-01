@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: hprs-app
+    runtime: docker
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        value: "Host=dpg-d42qt10d13ps73cmkph0-a;Port=5432;Database=hprs_db;Username=hprs_db_user;Password=YOURPASSWORD;SSL Mode=Require;Trust Server Certificate=true"
